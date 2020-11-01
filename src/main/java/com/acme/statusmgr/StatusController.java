@@ -34,8 +34,12 @@ public class StatusController {
 
     
     @RequestMapping("/status")
-    public ServerStatus greeting(@RequestParam(value="name", defaultValue="Anonymous") String name) {
+    public ServerStatus webServiceGreeting(@RequestParam(value="name", defaultValue="Anonymous") String name, @RequestParam(required = false) String[] details) {
+        for (String s : details) {
+            System.out.println("*** DEBUG INFO ***" + s);
+        }
         return new ServerStatus(counter.incrementAndGet(),
                             String.format(template, name));
+
     }
 }
